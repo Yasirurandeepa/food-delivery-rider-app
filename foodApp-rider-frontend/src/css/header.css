@@ -1,0 +1,19 @@
+.navbarLogin{
+    color: white;
+}
+
+.navbarLogin:hover{
+    color: black;
+    background-color: black;
+}
+
+.navbarLogin:focus{
+    text-decoration: none;
+}
+
+navbarLogin:active {
+    color: black;
+}
+.navbarRegister{
+    color: white;
+}

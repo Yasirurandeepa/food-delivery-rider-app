@@ -1,0 +1,43 @@
+.login-form-position {
+    position: absolute;
+    left: 40%;
+    top: 25%;
+}
+
+.company-header{
+    text-align: center;
+    font-family: fantasy;
+    font-size: 40px;
+    color: black;
+}
+
+h1 span{
+    color: green;
+}
+
+a{
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.login-form-forgot {
+    float: right;
+}
+  
+.login-form-button {
+    width: 100%;
+    background-color: green;
+}
+
+.login-form-button:hover{
+    background-color: black;
+}
+
+.login-form-button:focus{
+    background-color: black;
+}
+
+.login-form {
+    max-width: 300px;
+}
