@@ -3,6 +3,7 @@ import {Map, GoogleApiWrapper, Marker} from 'google-maps-react';
 import NewHeader from "./NewHeader";
 import SideMenu from "./SideMenu";
 import NewFooter from "./NewFooter";
+import '../css/location.css'
 
 class Location extends React.Component {
 
@@ -27,14 +28,13 @@ class Location extends React.Component {
 
     render() {
         return (
-            <div style={{backgroundColor: "black"}}>
+            <div className="mapParent">
                 <NewHeader/>
-                <SideMenu/>
+                <SideMenu activeKey={"3"}/>
                 <Map
                     google={this.props.google}
                     zoom={15}
-                    // , left: "30%", top: "10%"
-                    style={{position: "absolute", left: "30%", top: "-50%", margin: "auto"}}
+                    style={{position: "absolute"}}
                     initialCenter={{lat: 6.9271, lng: 79.8612}}
                     scrollwheel={false}
                     disableDoubleClickZoom={true}

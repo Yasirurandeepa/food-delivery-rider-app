@@ -13,7 +13,7 @@ import Location from "./Location";
 import Delivery from "./Delivery";
 import PrivateRoute from "../privateRoute";
 
-localStorage.setItem("isUserLoggedIn", false);
+// localStorage.setItem("isUserLoggedIn", false);
 
 class AppRouter extends React.Component {
 

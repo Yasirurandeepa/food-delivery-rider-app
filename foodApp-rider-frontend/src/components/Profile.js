@@ -6,22 +6,18 @@ import WrappedEditDetailsForm from "./EditDetails";
 import SideMenu from "./SideMenu";
 import NewHeader from "./NewHeader";
 import NewFooter from "./NewFooter";
+import UserService from "../services/UserService";
 
 class Profile extends React.Component{
 
     state = {username: null, id: null, email: null, phone: null, visible: false, confirmLoading: false, ModalText: 'Content of the modal'};
 
     componentDidMount(): void {
-        axios({
-            method: 'get',
-            url: 'http://localhost:8080/rider/'+localStorage.getItem("uid"),
-            headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
-                "Access-Control-Allow-Origin": "*",
-                "Authorization": localStorage.getItem("jwtToken")
-            }
-        }).then(
+
+        console.log("componentDidMount");
+        UserService.loadUserDetails().then(
             success => {
+                console.log(success);
                 this.setState({
                     id: success.data.result.id,
                     username: success.data.result.username,

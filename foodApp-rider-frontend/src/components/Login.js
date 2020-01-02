@@ -6,30 +6,18 @@ import {
     Link
 } from "react-router-dom";
 import axios from "axios";
+import AuthService from "../services/AuthService";
 
 class LoginForm extends React.Component {
 
     handleSubmit = e => {
         localStorage.clear();
         e.preventDefault();
-        localStorage.clear();
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
             }
-
-            axios({
-                method: 'post',
-                url: 'http://localhost:8080/token/generate-token',
-                data: {
-                    username: values["username"],
-                    password: values["password"]
-                },
-                headers: {
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    "Access-Control-Allow-Origin": "*",
-                }
-            }).then(
+            AuthService.userSignIn(values["username"], values["password"]).then(
                 success => {
                     //if user log in success, generate a JWT token for the user with a secret key
                     // jwt.sign(values["username"], 'SecretKeyToGenJWTs',{ expiresIn: 60 * 60 }, (err, token) => {
@@ -37,12 +25,12 @@ class LoginForm extends React.Component {
                     //   console.log(token);
                     // });
                     if(success.data.status === 200){
-                        message.success("You have successfully Logged In!!!");
-                        localStorage.setItem("isUserLoggedIn",true);
-                        console.log(success);
+                        console.log("success");
                         localStorage.setItem("uid",success.data.result.id);
                         localStorage.setItem("username",success.data.result.username);
                         localStorage.setItem("jwtToken","Bearer "+ success.data.result.token);
+                        message.success("You have successfully Logged In!!!");
+                        localStorage.setItem("isUserLoggedIn",true);
                         this.props.history.push('/profile');
                     }else if(success.data.status === 400){
                         message.error("Invalid username or password");
