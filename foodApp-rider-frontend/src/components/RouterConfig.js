@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import React from "react";
 import CustomHeader from "./CustomHeader";
 import CustomFooter from "./CustomFooter";
@@ -13,23 +13,23 @@ import Location from "./Location";
 import Delivery from "./Delivery";
 import PrivateRoute from "../privateRoute";
 
-// localStorage.setItem("isUserLoggedIn", false);
-
 class AppRouter extends React.Component {
 
     render() {
         return (
             <Router>
+                <Switch>
+                    <Route path="/login" exact component={WrappedLoginForm}/>
+                    <Route path="/register" exact component={WrappedRegistrationForm}/>
+                    <PrivateRoute  exact path="/profile" component={Profile}/>
+                    <PrivateRoute exact path="/location"  component={Location}/>
+                    <PrivateRoute exact path="/deliveries" component={Delivery}/>
+                    <Route path="/" exact render={() => {
+                        return <Redirect to="/login"/>
+                    }}/>
+                </Switch>
                 {/*<CustomHeader/>*/}
                 {/*<NewHeader/>*/}
-                <Route path="/login" exact component={WrappedLoginForm}/>
-                <Route path="/register" exact component={WrappedRegistrationForm}/>
-                <PrivateRoute path="/profile" component={Profile}/>
-                <PrivateRoute path="/location" component={Location}/>
-                <PrivateRoute path="/deliveries" component={Delivery}/>
-                <Route path="/" exact render={() => {
-                    return <Redirect to="/login"/>
-                }}/>
                 {/*<CustomFooter/>*/}
                 {/*<NewFooter/>*/}
             </Router>

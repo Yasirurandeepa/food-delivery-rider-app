@@ -27,7 +27,7 @@ class AuthService {
 
     isLoggedIn() {
         if(localStorage.getItem("uid")){
-            return true
+            return true;
         }else{
             return false;
         }

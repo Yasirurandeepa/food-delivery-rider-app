@@ -10,8 +10,11 @@ import AuthService from "../services/AuthService";
 
 class LoginForm extends React.Component {
 
-    handleSubmit = e => {
+    componentDidMount() {
         localStorage.clear();
+    }
+
+    handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
@@ -24,15 +27,15 @@ class LoginForm extends React.Component {
                     //   if(err) { console.log(err) }
                     //   console.log(token);
                     // });
-                    if(success.data.status === 200){
+                    if (success.data.status === 200) {
                         console.log("success");
-                        localStorage.setItem("uid",success.data.result.id);
-                        localStorage.setItem("username",success.data.result.username);
-                        localStorage.setItem("jwtToken","Bearer "+ success.data.result.token);
+                        localStorage.setItem("uid", success.data.result.id);
+                        localStorage.setItem("username", success.data.result.username);
+                        localStorage.setItem("jwtToken", "Bearer " + success.data.result.token);
                         message.success("You have successfully Logged In!!!");
-                        localStorage.setItem("isUserLoggedIn",true);
-                        this.props.history.push('/profile');
-                    }else if(success.data.status === 400){
+                        localStorage.setItem("isUserLoggedIn", true);
+                        this.props.history.push('/profile')
+                    } else if (success.data.status === 400) {
                         message.error("Invalid username or password");
                     }
 
