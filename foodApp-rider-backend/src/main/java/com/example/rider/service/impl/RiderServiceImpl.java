@@ -71,6 +71,7 @@ public class RiderServiceImpl implements UserDetailsService, RiderService {
 //            rider.setId(id);
             rider.setEmail(riderDto.getEmail());
             rider.setPhone(riderDto.getPhone());
+            rider.setStatus(riderDto.getStatus());
             rideDao.save(rider);
         }
         return riderDto;

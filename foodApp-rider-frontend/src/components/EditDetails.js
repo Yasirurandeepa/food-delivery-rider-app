@@ -52,13 +52,13 @@ class EditDetails extends React.Component {
                     data: {
                         id: localStorage.getItem("uid"),
                         email: values["email"],
-                        phone: values["phone"]
+                        phone: values["phone"],
+                        status: this.props.status
                     }
                 }).then(
                     success => {
                         message.success("Successfully updated the details");
                         console.log(success);
-                        this.props.history.pop();
                     },
                     error => console.log(error)
                 )
