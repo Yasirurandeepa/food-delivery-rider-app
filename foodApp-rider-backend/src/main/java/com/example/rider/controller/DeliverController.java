@@ -23,7 +23,7 @@ public class DeliverController {
     }
 
     @GetMapping()
-    public ApiResponse<List<DeliverController>> listDeliver(){
+    public ApiResponse<List<Deliver>> listDeliver(){
         return new ApiResponse<>(HttpStatus.OK.value(), "Deliver list fetched successfully.", deliverService.findAll());
     }
 

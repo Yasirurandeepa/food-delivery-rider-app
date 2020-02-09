@@ -5,6 +5,7 @@ import '../css/delivery.css'
 import NewHeader from "./NewHeader";
 import SideMenu from "./SideMenu";
 import NewFooter from "./NewFooter";
+import DeliveryService from "../services/DeliveryService";
 
 const columns = [
     // {
@@ -44,15 +45,7 @@ class Delivery extends React.Component{
     state = {dataSource: []};
 
     componentDidMount(): void {
-        axios({
-            method: 'get',
-            url: 'http://localhost:8080/deliver',
-            headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
-                "Access-Control-Allow-Origin": "*",
-                "Authorization": localStorage.getItem("jwtToken")
-            }
-        }).then(
+        DeliveryService.listDeliveriesByRiderId().then(
             success => {
                 console.log(success.data.result);
                 this.fetchDeliverRecords(success.data.result);

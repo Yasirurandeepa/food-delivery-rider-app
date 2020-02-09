@@ -14,7 +14,6 @@ class Profile extends React.Component{
 
     componentDidMount(): void {
 
-        console.log("componentDidMount");
         UserService.loadUserDetails().then(
             success => {
                 console.log(success);
